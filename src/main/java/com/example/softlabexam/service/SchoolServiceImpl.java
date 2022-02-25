@@ -16,17 +16,10 @@ public class SchoolServiceImpl implements SchoolService {
 
     private final StudentsRepository studentsRepository;
 
+
     public Student addStudent(Student student) {
         return studentsRepository.save(student);
     }
-
-    public List<Student> findStudent(String name) {
-        return studentsRepository.findStudent(name);
-    }
-    //test
-//    public List<Student> find(String name){
-//        return studentsRepository.findAll();
-//    }
 
     @Transactional
     public Student editStudent(Integer id) {

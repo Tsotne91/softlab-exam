@@ -27,11 +27,6 @@ public class StudentsController {
     public List<Student> findStudent(@RequestParam(required = false) String name) {
         return studentsRepository.findStudent(name);
     }
-    //test>>>>>>>>
-//    @GetMapping("")
-//    public List<Student> find(@RequestParam(required = false) String name){
-//        return schoolService.find(name);
-//    }
 
     //add Student
     @PostMapping("")
