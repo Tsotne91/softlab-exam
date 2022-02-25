@@ -20,15 +20,17 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Transactional
-    public Student editStudent(Integer id) {
+    public Student editStudent(Integer id, Student student) {
         if (id == null) {
             throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Invalid ID");
         }
-        var student = studentsRepository
+        var newStudent = studentsRepository
                 .findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
-        studentsRepository.save(student);
-        return student;
+        newStudent.setFirstName(student.getFirstName());
+        newStudent.setLastName(student.getLastName());
+        studentsRepository.save(newStudent);
+        return newStudent;
     }
 
     @Transactional
@@ -40,7 +42,6 @@ public class SchoolServiceImpl implements SchoolService {
                 .findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         studentsRepository.delete(student);
-
         return student;
     }
 

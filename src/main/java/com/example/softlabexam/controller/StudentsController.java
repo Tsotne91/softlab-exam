@@ -37,9 +37,10 @@ public class StudentsController {
 
     //edit Student
     @PostMapping("edit-student/{id}")
-    public ResponseEntity<Student> editStudent(@PathVariable Integer id) {
+    public ResponseEntity<Student> editStudent(@PathVariable Integer id,
+                                               @RequestBody Student student) {
         try {
-            var studentEdited = schoolService.editStudent(id);
+            var studentEdited = schoolService.editStudent(id, student);
             return ResponseEntity.ok(studentEdited);
         } catch (HttpClientErrorException ignore) {
             return ResponseEntity.status(ignore.getStatusCode()).build();
