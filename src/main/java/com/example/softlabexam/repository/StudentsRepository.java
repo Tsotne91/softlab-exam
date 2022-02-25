@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StudentsRepository extends JpaRepository<Student, Integer> {
-    @Query("select s from Student s where s.firstName = :name or  s.lastName = :name")
+    @Query("select s from Student s")
     List<Student> findStudent(String name);
 }

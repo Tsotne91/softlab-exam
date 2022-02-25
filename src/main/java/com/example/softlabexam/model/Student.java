@@ -11,10 +11,10 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-@SequenceGenerator(name = "studentIdGenerator",
-        sequenceName = "Students_id_seq",
-        allocationSize = 1)
 @Table(name = "students")
+@SequenceGenerator(name = "studentIdGenerator",
+        sequenceName = "public.students_id_seq",
+        allocationSize = 1)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
