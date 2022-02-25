@@ -8,14 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class SchoolServiceImpl implements SchoolService {
 
     private final StudentsRepository studentsRepository;
-
 
     public Student addStudent(Student student) {
         return studentsRepository.save(student);
@@ -42,6 +40,7 @@ public class SchoolServiceImpl implements SchoolService {
                 .findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         studentsRepository.delete(student);
+
         return student;
     }
 
