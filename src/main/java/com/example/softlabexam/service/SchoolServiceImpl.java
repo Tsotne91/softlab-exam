@@ -1,4 +1,55 @@
 package com.example.softlabexam.service;
 
-public class SchoolServiceImpl {
+import com.example.softlabexam.model.Student;
+import com.example.softlabexam.repository.StudentsRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+@RequiredArgsConstructor
+@Service
+public class SchoolServiceImpl implements SchoolService {
+
+    private final StudentsRepository studentsRepository;
+
+    public Student addStudent(Student student) {
+        return studentsRepository.save(student);
+    }
+
+    public List<Student> findStudent(String name) {
+        return studentsRepository.findStudent(name);
+    }
+    //test
+//    public List<Student> find(String name){
+//        return studentsRepository.findAll();
+//    }
+
+    @Transactional
+    public Student editStudent(Integer id) {
+        if (id == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Invalid ID");
+        }
+        var student = studentsRepository
+                .findById(id)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        studentsRepository.save(student);
+        return student;
+    }
+
+    @Transactional
+    public Student deleteStudent(Integer id) {
+        if (id == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Invalid ID");
+        }
+        var student = studentsRepository
+                .findById(id)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        studentsRepository.delete(student);
+        return student;
+    }
+
 }
