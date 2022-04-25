@@ -44,5 +44,4 @@ public class SchoolServiceImpl implements SchoolService {
         studentsRepository.delete(student);
         return student;
     }
-
 }

@@ -22,14 +22,14 @@ public class StudentsController {
         this.schoolService = schoolService;
     }
 
-    //find Student
-    @GetMapping
-    public List<Student> findStudent(@RequestParam(required = false) String name) {
-        return studentsRepository.findStudent(name);
-    }
+ // list all Students
+ @GetMapping
+ public List<Student> listAllStudents(@RequestParam(required = false) String name) {
+     return studentsRepository.findAll();
+ }
 
     //add Student
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Student> addNewStudent(@RequestBody Student student) {
         Student newStudent = schoolService.addStudent(student);
         return ResponseEntity.status(201).body(newStudent);
