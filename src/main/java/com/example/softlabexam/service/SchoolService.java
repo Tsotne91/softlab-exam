@@ -2,6 +2,8 @@ package com.example.softlabexam.service;
 
 import com.example.softlabexam.model.Student;
 
+import java.util.List;
+
 
 public interface SchoolService {
     Student addStudent(Student student);
@@ -10,4 +12,5 @@ public interface SchoolService {
 
     Student deleteStudent(Integer id);
 
+    List<Student> searchStudents(StudentSearch params);
 }
